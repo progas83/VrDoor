@@ -12,10 +12,8 @@ namespace WebDoor.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            using (var db = new DoorDbContext())
-            {
-                var res = db.PARAMS.ToList();
-            }
+            ReservationAPIController apiTest = new ReservationAPIController();
+            var result = apiTest.Get();
 
                 return View();
         }
