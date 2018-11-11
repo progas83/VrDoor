@@ -47,14 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DoorDbContext.cs" />
-    <Compile Include="DoorDbInitializer.cs" />
     <Compile Include="HelmetWorkStation.cs" />
     <Compile Include="PARAM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="Visitor.cs" />
+    <Compile Include="WorkingPlan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -26,6 +26,6 @@ namespace DoorDataModel
 
         public DateTime EndReservation { get; set; }
 
-        public virtual List<HelmetWorkStation> HelmetWorkStations { get; set; }
+        public List<HelmetWorkStation> HelmetWorkStations { get; set; }
     }
 }

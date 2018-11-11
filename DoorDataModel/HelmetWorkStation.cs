@@ -22,12 +22,12 @@ namespace DoorDataModel
 
         public PARAM HelmetType { get; set; }
 
-        public virtual List<Reservation> Reservations { get; set; }
+        public List<Reservation> Reservations { get; set; }
 
-        [NotMapped]
-        public  List<PARAM> AvailableReservationTypes { get; set; }
+        //[NotMapped]
+        //public  List<PARAM> AvailableReservationTypes { get; set; }
 
-        [NotMapped]
-        public PARAM ReservedType { get; set; }
+        //[NotMapped]
+        //public PARAM ReservedType { get; set; }
     }
 }

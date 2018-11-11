@@ -4,8 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Door.StaticData;
+using DoorDataModel;
 
-namespace DoorDataModel
+namespace WebDoor
 {
     public class DoorDbInitializer : CreateDatabaseIfNotExists<DoorDbContext>
     {
