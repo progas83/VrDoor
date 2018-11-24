@@ -5,7 +5,7 @@ using DoorDataModel;
 
 namespace WebDoor
 {
-    public class DoorDbInitializer : DropCreateDatabaseAlways<DoorDbContext>
+    public class DoorDbInitializer : CreateDatabaseIfNotExists<DoorDbContext>
     {
         protected override void Seed(DoorDbContext context)
         {

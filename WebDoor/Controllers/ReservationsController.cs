@@ -11,6 +11,13 @@ namespace WebDoor.Controllers
 {
     public class ReservationsController : ApiController
     {
+        /// <summary>
+        /// Gets data of reservations by current date
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
         public string Get(int year, int month, int day)
         {
             ReservationManager manager = new ReservationManager();
@@ -20,6 +27,17 @@ namespace WebDoor.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Put reservation for current date
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <param name="reservedCount"></param>
+        /// <param name="visitorData"></param>
+        public void Put(int year, int month, int day, int reservedCount, string visitorData)
+        {
+        }
 
     }
 }
