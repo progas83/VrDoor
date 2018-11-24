@@ -12,8 +12,11 @@ namespace WebDoor.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            ReservationAPIController apiTest = new ReservationAPIController();
-            var result = apiTest.Get();
+            MonthReservationsController apiTest = new MonthReservationsController();
+            var result = apiTest.Get(2018,11);
+
+            ReservationsController resController = new ReservationsController();
+            var r = resController.Get(2018, 11, 28);
 
                 return View();
         }

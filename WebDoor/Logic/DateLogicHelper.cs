@@ -8,7 +8,7 @@ namespace WebDoor.Logic
 {
     public class DateLogicHelper
     {
-        public int GetDaysInMonth(int year,int monthNumber)
+        public static int GetDaysInMonth(int year,int monthNumber)
         {
             return System.DateTime.DaysInMonth(year, monthNumber);
         }
@@ -17,7 +17,7 @@ namespace WebDoor.Logic
         public List<CalendarWeek> GetWeeksOfMonth(int year, int monthNumber)
         {
             List<CalendarWeek> weeks = new List<CalendarWeek>();
-            int daysInMonth = this.GetDaysInMonth(year, monthNumber);
+            int daysInMonth = GetDaysInMonth(year, monthNumber);
             CalendarWeek tmpWeek = null;
             int weekOfMonth = 0;
             for(int i=1;i<=daysInMonth;i++)

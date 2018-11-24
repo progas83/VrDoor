@@ -10,22 +10,11 @@ namespace DoorDataModel
     {
         public Reservation()
         {
-            this.HelmetWorkStations = new List<HelmetWorkStation>();
+            this.HourReservations = new List<HourReservation>();
         }
+
+        public Nullable<DateTime> DateReservation { get; set; }
         public int Id { get; set; }
-
-        public int VisitorId { get; set; }
-
-        public Visitor Visitor { get; set; }
-
-        //public int HelmetId { get; set; }
-
-        //public HelmetWorkStation Helmet { get; set; }
-
-        public DateTime StartReservation { get; set; }
-
-        public DateTime EndReservation { get; set; }
-
-        public List<HelmetWorkStation> HelmetWorkStations { get; set; }
+        public List<HourReservation> HourReservations { get; set; }
     }
 }

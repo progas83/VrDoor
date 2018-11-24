@@ -11,7 +11,8 @@ namespace DoorDataModel
     {
         public HelmetWorkStation()
         {
-            this.Reservations = new List<Reservation>();
+            //this.Reservations = new List<Reservation>();
+            this.IsActive = true;
         }
         public int Id { get; set; }
 
@@ -22,7 +23,9 @@ namespace DoorDataModel
 
         public PARAM HelmetType { get; set; }
 
-        public List<Reservation> Reservations { get; set; }
+        public bool IsActive { get; set; }
+
+        //public List<Reservation> Reservations { get; set; }
 
         //[NotMapped]
         //public  List<PARAM> AvailableReservationTypes { get; set; }

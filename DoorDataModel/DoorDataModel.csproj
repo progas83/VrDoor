@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DoorDbContext.cs" />
     <Compile Include="HelmetWorkStation.cs" />
+    <Compile Include="HourReservation.cs" />
     <Compile Include="PARAM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />

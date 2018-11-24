@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using Door.StaticData;
 using DoorDataModel;
 
 namespace WebDoor
 {
-    public class DoorDbInitializer : CreateDatabaseIfNotExists<DoorDbContext>
+    public class DoorDbInitializer : DropCreateDatabaseAlways<DoorDbContext>
     {
         protected override void Seed(DoorDbContext context)
         {
@@ -40,6 +37,7 @@ namespace WebDoor
             HelmetWorkStation station1 = new HelmetWorkStation();
             station1.HelmetType = helmetParam1;
             station1.WorkStationNumber = 1;
+            
 
             context.HelmetWorkStations.Add(station1);
 

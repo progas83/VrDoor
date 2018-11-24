@@ -184,8 +184,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReservationAPIController.cs" />
-    <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\MonthReservationsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DbInitializer\DoorDbInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,8 +193,12 @@
     </Compile>
     <Compile Include="Logic\DateLogicHelper.cs" />
     <Compile Include="Logic\ReservationManager.cs" />
+    <Compile Include="Logic\TimeReservation.cs" />
+    <Compile Include="Logic\WorkingPlanCaсhe.cs" />
     <Compile Include="Models\CalendarDay.cs" />
     <Compile Include="Models\CalendarWeek.cs" />
+    <Compile Include="Models\DayReservationInfo.cs" />
+    <Compile Include="Models\HourReservationInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +232,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
