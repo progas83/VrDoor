@@ -203,8 +203,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\background.jpg" />
+    <Content Include="Content\bg\bg1.jpg" />
+    <Content Include="Content\bg\bg2.jpg" />
+    <Content Include="Content\bg\bg3.jpg" />
+    <Content Include="Content\bg\bg4.jpg" />
+    <Content Include="Content\bg\bg5.jpg" />
+    <Content Include="Content\bg\bg6.jpg" />
+    <Content Include="Content\bg\bg8.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullpage.min.css" />
+    <Content Include="Content\games\arizona.png" />
+    <Content Include="Content\games\beat.png" />
+    <Content Include="Content\games\fallout.png" />
+    <Content Include="Content\games\glasses.png" />
+    <Content Include="Content\games\wardust.png" />
+    <Content Include="Content\glasses-draft.png" />
+    <Content Include="Content\logo-big.png" />
+    <Content Include="Content\logo-door.png" />
+    <Content Include="Content\slick.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -233,12 +251,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\fullpage.js" />
+    <Content Include="Scripts\fullpage.min.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\tobook.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -269,7 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Door.StaticData\Door.StaticData.csproj">

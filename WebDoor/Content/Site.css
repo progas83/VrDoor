@@ -1,17 +1,293 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&subset=cyrillic');
+body {
+    font-family: Roboto, sans-serif;
+    color: #333;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+/* Sections styles 	
+* --------------------------------------- */
+section {
+    position: relative;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.section0 {
+    background-image: url('bg/bg1.jpg');
+}
+.section1 {
+    background-image: url('bg/bg2.jpg');
+}
+.section2 {
+    background-image: url('bg/bg3.jpg');
+}
+.section3 {
+    background-image: url('bg/bg4.jpg');
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.section .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.45);
+    max-height: 100vh;
+    overflow: hidden;
+
 }
+
+h1 {
+    /*color: #FECF3E;*/
+    color: #fff;
+    font-size: 10vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #567AB4
+}
+h2 {
+    /*color: #91AF48;*/
+    color: #567AB4;
+    font-size: 8vh;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #FFF
+}
+h3 {
+    /*color: #91AF48;*/
+    color: #567AB4;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #FFF
+}
+h4 {
+    /*color: #91AF48;*/
+    color: #567AB4;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #FFF
+}
+
+img {
+    display: block;
+}
+
+.logo {
+    margin: 15px;
+    width: calc(100% - 30px);
+    height: auto;
+    max-width: 220px;
+}
+
+.phones-wrapper {
+    text-align: right;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.phones-wrapper:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    background: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4IiB2aWV3Qm94PSIwIDAgMzUgMzUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDM1IDM1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTI1LjMwMiwwSDkuNjk4Yy0xLjMsMC0yLjM2NCwxLjA2My0yLjM2NCwyLjM2NHYzMC4yNzFDNy4zMzQsMzMuOTM2LDguMzk4LDM1LDkuNjk4LDM1aDE1LjYwNCAgIGMxLjMsMCwyLjM2NC0xLjA2MiwyLjM2NC0yLjM2NFYyLjM2NEMyNy42NjYsMS4wNjMsMjYuNjAyLDAsMjUuMzAyLDB6IE0xNS4wMDQsMS43MDRoNC45OTJjMC4xNTgsMCwwLjI4NiwwLjEyOCwwLjI4NiwwLjI4NyAgIGMwLDAuMTU4LTAuMTI4LDAuMjg2LTAuMjg2LDAuMjg2aC00Ljk5MmMtMC4xNTgsMC0wLjI4Ni0wLjEyOC0wLjI4Ni0wLjI4NkMxNC43MTgsMS44MzIsMTQuODQ2LDEuNzA0LDE1LjAwNCwxLjcwNHogTTE3LjUsMzMuODE4ICAgYy0wLjY1MiwwLTEuMTgyLTAuNTI5LTEuMTgyLTEuMTgzczAuNTI5LTEuMTgyLDEuMTgyLTEuMTgyczEuMTgyLDAuNTI4LDEuMTgyLDEuMTgyUzE4LjE1MiwzMy44MTgsMTcuNSwzMy44MTh6IE0yNi4wMjEsMzAuNjI1ICAgSDguOTc5VjMuNzQ5aDE3LjA0MlYzMC42MjV6IE0xNy41LDIyLjY4OWMtMi4yNjQsMC00LjM5MS0wLjg4MS01Ljk5LTIuNDhjLTAuMjMtMC4yMzItMC4yMy0wLjYwNywwLTAuODM5ICAgYzAuMjMyLTAuMjMxLDAuNjA3LTAuMjMxLDAuODQsMGMxLjM3NSwxLjM3NiwzLjIwNSwyLjEzNCw1LjE1LDIuMTM0YzEuOTQ1LDAsMy43NzUtMC43NTgsNS4xNS0yLjEzNCAgIGMwLjIzLTAuMjMxLDAuNjA1LTAuMjMxLDAuODQsMGMwLjIzLDAuMjMxLDAuMjMsMC42MDYsMCwwLjgzOUMyMS44OTEsMjEuODA5LDE5Ljc2NCwyMi42ODksMTcuNSwyMi42ODl6IE0xNi4xNjQsMTMuMDEyICAgYzAsMC43OTQtMC42NDUsMS40MzgtMS40MzksMS40MzhjLTAuNzkzLDAtMS40MzgtMC42NDQtMS40MzgtMS40MzhjMC0wLjc5NSwwLjY0NS0xLjQzOCwxLjQzOC0xLjQzOCAgIEMxNS41MiwxMS41NzMsMTYuMTY0LDEyLjIxNywxNi4xNjQsMTMuMDEyeiBNMjEuNzEzLDEzLjAxMmMwLDAuNzk0LTAuNjQ1LDEuNDM4LTEuNDM4LDEuNDM4cy0xLjQzOC0wLjY0NC0xLjQzOC0xLjQzOCAgIGMwLTAuNzk1LDAuNjQ2LTEuNDM4LDEuNDM4LTEuNDM4QzIxLjA2NiwxMS41NzQsMjEuNzEzLDEyLjIxNywyMS43MTMsMTMuMDEyeiIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=) no-repeat center;
+    background-size: contain;
+}
+
+.phone {
+    display: inline-block;
+    margin: 30px 50px 30px 0;
+    text-decoration: none;
+    color: #fff;
+}
+.phone:hover {
+    color: #fff;
+}
+.title {
+    display: block;
+    margin: 10px auto;
+    font-size: 14vh;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #567AB4;
+}
+a.reserve__button {
+    display: block;
+    margin: 15px auto;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #444;
+    max-width: 350px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #FECF3E;
+    box-shadow: 1px 2px 2px #444, 0 0 1em #fff;
+    transition: 0.4s;
+}
+    a.reserve__button:hover {
+        text-decoration: none;
+        box-shadow: 1px 1px 1px #777, 0 0 0.5em #fff;
+    }
+
+.games {
+    background: url('games/glasses.png') no-repeat center;
+    background-size:contain;
+    height: 280px;
+    position:relative;
+}
+.games-slider {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 33%;
+    max-width: 100%;
+    max-height: 97px;
+}
+    .games-slider div {
+        text-align:center;
+    }
+    .games-slider img {
+        display: inline-block;
+        vertical-align:middle;
+        width: auto;
+        height: auto;
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+.price {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+    .price b {
+        color: #567AB4;
+        font-size: 32px;
+    }
+
+.time {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* To book styles 
+ *  ---------------------- */
+.calendar__wrapper {
+    display: block;
+    margin: auto;
+    position: relative;
+    max-width: 540px;
+}
+
+.calendar__month-name {
+    text-align: center;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+}
+
+    #calendar > div {
+        font-size: 18px;
+        padding: 5px;
+        background: rgba(200,200,200,0.6);
+        text-align: center;
+        transition: 0.3s;
+    }
+
+
+    #calendar > div.empty-cell {
+        background: rgba(126,162,190,0);
+    }
+
+    #calendar > div.active, #calendar > div.weekday {
+        background: rgba(126,162,190,0.5);
+    }
+
+    #calendar > div.active:hover {
+       background: rgba(254,207,62,0.6);
+    }
+
+    .calendar__day {
+        display: block;
+    }
+
+.calendar__places {
+    display: block;
+    font-size: 13px;
+}
+
+.calendar__wrapper .cell.active {
+    cursor: pointer;
+}
+
+.calendar__arrow {
+    position: absolute;
+    top: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    outline: none;
+}
+.calendar__arrow-left, .calendar__arrow-right {
+    background: none;
+}
+
+    .calendar__arrow-left img, .calendar__arrow-right img {
+        width: 60px;
+        height: 45px;
+    }
+.calendar__arrow-left {
+    left: 5px;
+}
+
+.calendar__arrow-right {
+    right: 5px;
+}
+.calendar__arrow-left img {
+    transform: rotate(180deg);
+}
+
+    .calendar__form {
+        display: none;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+
+    .calendar__form.show {
+        display: block !important;
+    }
+
+.reserve__buttons-wrapper {
+    text-align: center;
+}
+
+.btn-group span {
+    padding: 10px;
+}
+
+.reverse__time-list {
+    flex-direction: column;
+}
+
+.reserve__list-item {
+    cursor: pointer;
+}
+
+    .reserve__list-item.busy {
+        color: grey;
+    }
