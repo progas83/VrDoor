@@ -35,7 +35,7 @@ namespace WebDoor.Controllers
         /// <param name="day"></param>
         /// <param name="reservedCount"></param>
         /// <param name="visitorData"></param>
-        public void Put(int year, int month, int day, int reservedCount, string visitorData)
+        public void Put(int year, int month, int day, int reservedCount, string visitorData, string visitorName)
         {
         }
 
