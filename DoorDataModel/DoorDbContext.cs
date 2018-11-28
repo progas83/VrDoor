@@ -9,7 +9,7 @@ namespace DoorDataModel
 {
     public class DoorDbContext : DbContext
     {
-        public DoorDbContext():base("DoorDbContext")
+        public DoorDbContext():base("name = DoorDbEntities")
         {
 
         }
