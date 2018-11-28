@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoorDataModel", "DoorDataMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Door.StaticData", "Door.StaticData\Door.StaticData.csproj", "{69767742-A82E-42C8-940D-E183F6CFC445}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileDataOperations", "FileDataOperations\FileDataOperations.csproj", "{06716D7F-1EE8-4A66-92CD-FF810290F498}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{69767742-A82E-42C8-940D-E183F6CFC445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69767742-A82E-42C8-940D-E183F6CFC445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69767742-A82E-42C8-940D-E183F6CFC445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06716D7F-1EE8-4A66-92CD-FF810290F498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06716D7F-1EE8-4A66-92CD-FF810290F498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06716D7F-1EE8-4A66-92CD-FF810290F498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06716D7F-1EE8-4A66-92CD-FF810290F498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using WebDoor.Logic;
@@ -13,10 +9,19 @@ namespace WebDoor.Controllers
     {
         public string Get(int year,int month)
         {
-            ReservationManager manager = new ReservationManager();
-            var defaultFreeHelmets = manager.GetMonthFreeHelmetsDefault(year, month);
+            string result = string.Empty;
+            try
+            {
+                ReservationManager manager = new ReservationManager();
+                var defaultFreeHelmets = manager.GetMonthFreeHelmetsDefault(year, month);
 
-            string result = JsonConvert.SerializeObject(defaultFreeHelmets);
+                result = JsonConvert.SerializeObject(defaultFreeHelmets);
+            }
+            catch(Exception ex)
+            {
+               // Logger.GetLogger().Log(ex);
+            }
+           
 
             return result;
         }
