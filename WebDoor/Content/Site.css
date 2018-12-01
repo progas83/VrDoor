@@ -228,7 +228,9 @@ a.reserve__button {
     max-height: unset;
     transition: 0.4s;
 }
-
+.btn:focus {
+    box-shadow: 1px 2px 2px #444, 0 0 1em #fff;
+}
 .btn-blue {
     background: #5687BE;
     color: #fff;

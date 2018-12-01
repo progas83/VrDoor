@@ -432,8 +432,8 @@ jQuery(document).ready(function ($) {
             return false;
         }
 
-        let data = buildRequest($('#name').val(), $('#tel').val());
-
+        let data = JSON.stringify(buildRequest($('#name').val(), $('#tel').val()));
+        
         $.ajax({
             type: "GET",
             url: "/api/MakeReservation",
