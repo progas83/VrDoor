@@ -131,7 +131,10 @@ jQuery(document).ready(function ($) {
             'year': day.getFullYear()
         };
         reserveDate = requestData; //update day to reserve. This is gloabl variable
-       
+
+        $('.calendar__wrapper').toggleClass('hide');
+        $('.preloader').toggleClass('hide');
+
         $.ajax({
             type: "GET",
             url: "/api/Reservations",
@@ -179,7 +182,7 @@ jQuery(document).ready(function ($) {
                 }
 
                 $('#time-list').html(out);
-                $('.calendar__wrapper').toggleClass('hide');
+                $('.preloader').toggleClass('hide');
                 $('.reserve__wrapper').toggleClass('hide');
             }
 
