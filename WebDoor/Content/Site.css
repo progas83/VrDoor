@@ -10,6 +10,7 @@ section {
     position: relative;
     background-size: cover;
     background-attachment: fixed;
+    height: 100vh;
 }
 .section0 {
     background-image: url('bg/bg1.jpg');
@@ -18,7 +19,8 @@ section {
     background-image: url('bg/bg2.jpg');
 }
 .section2 {
-    background-image: url('bg/bg3.jpg');
+    background-image: url('bg/bg31.jpg');
+    /*background: linear-gradient(#4e4945, #7e7b76);*/
 }
 .section3 {
     background-image: url('bg/bg4.jpg');
@@ -35,7 +37,9 @@ section {
     background: rgba(255,255,255,0.45);
     max-height: 100vh;
     overflow: hidden;
-
+    height: 94vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -74,7 +78,17 @@ h4 {
     text-align: center;
     text-shadow: 0px 0px 0px #808080, 0 0 1em #FFF
 }
-
+.preloader {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    background: url(preloader.svg) no-repeat center;
+    background-size: contain;
+}
 img {
     display: block;
 }
@@ -105,7 +119,7 @@ img {
 
 .phone {
     display: inline-block;
-    margin: 30px 50px 30px 0;
+    margin: 30px 50px 0 0;
     text-decoration: none;
     color: #fff;
 }
@@ -120,7 +134,7 @@ img {
 }
 a.reserve__button {
     display: block;
-    margin: 15px auto;
+    margin: 15px auto 0;
     border-radius: 8px;
     padding: 15px;
     font-size: 24px;
@@ -141,15 +155,15 @@ a.reserve__button {
 .games {
     background: url('games/glasses.png') no-repeat center;
     background-size:contain;
-    height: 280px;
+    height: 250px;
     position:relative;
 }
 .games-slider {
     position: absolute;
-    top: 70px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 33%;
+    width: 30%;
     max-width: 100%;
     max-height: 97px;
 }
@@ -176,28 +190,134 @@ a.reserve__button {
         font-size: 32px;
     }
 
-.time {
+.time, .men-quantity {
     font-size: 22px;
     font-weight: 600;
 }
 
 /* To book styles 
  *  ---------------------- */
+.reserve__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .calendar__wrapper {
     display: block;
-    margin: auto;
+    margin: 0 auto;
     position: relative;
     max-width: 540px;
+    max-height: unset;
+    transition: 0.4s;
+    overflow: hidden;
 }
 
-.calendar__month-name {
-    text-align: center;
+.calendar__wrapper.hide {
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
 }
 
+.reserve__wrapper {
+    display: block;
+    margin: auto;
+    max-width: 540px;
+    max-height: unset;
+    transition: 0.4s;
+}
+
+.btn-blue {
+    background: #5687BE;
+    color: #fff;
+    box-shadow: 1px 2px 2px #444, 0 0 1em #fff;
+    transition: 0.4s;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+.btn-cta {
+    background: #FECF3E;
+    box-shadow: 1px 2px 2px #444, 0 0 1em #fff;
+    transition: 0.4s;
+    text-transform: uppercase;
+}
+.btn-blue:hover {
+    background: #5687BE;
+    color: #fff;
+    box-shadow: 1px 1px 1px #777, 0 0 0.5em #fff;
+}
+.btn-cta:hover {
+    box-shadow: 1px 1px 1px #777, 0 0 0.5em #fff;
+}
+
+.reserve__wrapper.hide {
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+.reserve__time-list {
+    padding: 20px 0;
+}
+.reserve__list-item {
+    padding: 3px;
+}
+    .reserve__list-item:hover {
+        box-shadow: 1px 1px 1px #777, 0 0 0.5em #fff;
+    }
+.reserve__title {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5687BE;
+    text-shadow: 0px 0px 0px #808080, 0 0 1em #FFF;
+    text-transform: uppercase;
+    
+}
+.reserve__time {
+    font-weight: 600;
+    color: #000;
+    text-shadow: 1px 1px 1px #777;
+}
+    .reserve__places {
+        font-weight:500;
+    }
+    .calendar__month-name {
+        text-align: center;
+    }
+.reserve__wrapper input {
+    border-radius: 5px;
+    border: 0;
+    padding: 5px;
+    color: #000;
+    background: rgba(255,255,255,0.6);
+    margin: 0 0 10px;
+    width:100%;
+}
+.btn-minus {
+    padding: 0 7px;
+}
+
+.btn-plus {
+    padding: 0 7px;
+}
+.btn-minus img {
+    width: 20px;
+    height: 30px; 
+    transform: rotate(180deg);
+}
+.btn-plus img {
+    width: 20px;
+    height: 30px;
+}
+.reserve__message .alert-danger,
+.reserve__message .alert-success {
+    display: block;
+    margin-bottom: 10px;
+}
 #calendar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 2px;
+    width:440px;
 }
 
     #calendar > div {
@@ -246,8 +366,8 @@ a.reserve__button {
 }
 
     .calendar__arrow-left img, .calendar__arrow-right img {
-        width: 60px;
-        height: 45px;
+        width: 50px;
+        height: 30px;
     }
 .calendar__arrow-left {
     left: 5px;
@@ -275,9 +395,12 @@ a.reserve__button {
 .reserve__buttons-wrapper {
     text-align: center;
 }
+.reserve__buttons {
+    margin: 10px 0; 
 
+}
 .btn-group span {
-    padding: 10px;
+    padding: 5px 10px;
 }
 
 .reverse__time-list {

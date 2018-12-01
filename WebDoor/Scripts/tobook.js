@@ -60,120 +60,131 @@ jQuery(document).ready(function ($) {
        $('#month-name').html(monthName);
 
         let requestData = {
-            'month':currentDate.getMonth(),
+            'month':currentDate.getMonth()+1, // +1 needs because js count from 0 and server count from 1
             'year':currentDate.getFullYear()
         };
-        //TODO send request with requestData here. Now hardcode response
-        let response = JSON.parse('["20","10","18","36","20","10","18","36","20","10","18","36","20","10","18","36","1","10","18","36","20","10","18","36","20","10","18","36","20","10","18"]');
 
-        //Make head of calendar
-        out +='<div class="weekday">Пн</div><div class="weekday">Вт</div><div class="weekday">Ср</div><div class="weekday">Чт</div><div class="weekday">Пт</div><div class="weekday">Сб</div><div class="weekday">Вс</div>';
+        $.ajax({
+            type: "GET",
+            url: "/api/monthReservations",
+            data: requestData,
+            success: function (ajaxResponse) {
 
-        //Make days
-        let daysCount = daysInMonth(currentDate.getMonth()+1, currentDate.getFullYear());
+                // /api/monthReservations?year=2018&month=11
+                // let response = JSON.parse('["20","10","18","36","20","10","18","36","20","10","18","36","20","10","18","36","1","10","18","36","20","10","18","36","20","10","18","36","20","10","18"]');
+                
+                let response = JSON.parse(ajaxResponse);
 
-        let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+                //Make head of calendar
+                out += '<div class="weekday">Пн</div><div class="weekday">Вт</div><div class="weekday">Ср</div><div class="weekday">Чт</div><div class="weekday">Пт</div><div class="weekday">Сб</div><div class="weekday">Вс</div>';
 
-        if(firstDay === 0) {
-            firstDay=7; //fix for Sunday
-        }
-        //Create empty items before first day of month
-        while(firstDay > 1) {
-            firstDay--;
-            out+='<div class="empty-cell"></div>';
-        }
+                //Make days
+                let daysCount = daysInMonth(currentDate.getMonth() + 1, currentDate.getFullYear());
 
-        //Create days
-        let day=1;
-        while (daysCount >= day) {
+                let firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
 
-            firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day, 23, 59, 59);
+                if (firstDay === 0) {
+                    firstDay = 7; //fix for Sunday
+                }
+                //Create empty items before first day of month
+                while (firstDay > 1) {
+                    firstDay--;
+                    out += '<div class="empty-cell"></div>';
+                }
 
-            out+='<div class="cell';
-            if( firstDay > new Date() ) {
-                out+=' active" data-toggle="modal" data-target="#reserveModal';
+                //Create days
+                let day = 1;
+                while (daysCount >= day) {
+
+                    firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day, 23, 59, 59);
+
+                    out += '<div class="cell';
+                    if (firstDay > new Date()) {
+                        out += ' active" data-toggle="modal" data-target="#reserveModal';
+                    }
+                    out += '"><span class="calendar__day">' + day + '</span><span class="calendar__places">';
+
+                    if (firstDay < new Date()) {
+                        out += '- мест';
+                    } else {
+                        out += '<a class="calendar__reserve">мест: ' + response[(day - 1)] + '</a>';
+                    }
+                    out += '</span></div>';
+
+                    day++;
+                }
+
+                $('#calendar').html(out);
             }
-            out+='"><span class="calendar__day">' + day + '</span><span class="calendar__places">';
+        });
 
-            if( firstDay < new Date() ) {
-                out+='- мест';
-            } else {
-                out+='<a class="calendar__reserve">мест: ' + response[ (day-1) ] + '</a>';
-            }
-            out+='</span></div>';
-
-            day++;
-        }
-
-        $('#calendar').html(out);
     }
 
 
 
     function showReserveModal(day) {
 
-        //Reset form
-        $('#reserve-button').css('display', 'block');
-        $('.reserve__message').html('');
-
         //Make request to server
-        reserveDate = day.getTime()/1000;;
-        let requestData = reserveDate;
-       //TODO send request here with requestData. Now hardcode response
+        let requestData = {
+            'day': day.getDate(),
+            'month': day.getMonth() + 1, // +1 needs because js count from 0 and server count from 1
+            'year': day.getFullYear()
+        };
+        reserveDate = requestData; //update day to reserve. This is gloabl variable
+       
+        $.ajax({
+            type: "GET",
+            url: "/api/Reservations",
+            data: requestData,
+            success: function (ajaxResponse) {
 
-        response=JSON.parse('{\n' +
-            '  "time-list": [\n' +
-            '    {\n' +
-            '      "time-start":"14:00",\n' +
-            '      "time-end":"15:00",\n' +
-            '      "free-places":4\n' +
-            '    },\n' +
-            '    {\n' +
-            '     "time-start":"15:00",\n' +
-            '      "time-end":"16:00",\n' +
-            '      "free-places":2\n' +
-            '    },\n' +
-            '    {\n' +
-            '      "time-start":"16:00",\n' +
-            '      "time-end":"17:00",\n' +
-            '      "free-places":0\n' +
-            '    },\n' +
-            '    {\n' +
-            '      "time-start":"17:00",\n' +
-            '      "time-end":"18:00",\n' +
-            '      "free-places":4\n' +
-            '    },\n' +
-            '    {\n' +
-            '      "time-start":"18:00",\n' +
-            '      "time-end":"19:00",\n' +
-            '      "free-places":3\n' +
-            '    }\n' +
-            '  ]\n' +
-            '}');
+                //Reset form
+                $('#reserve-button').css('display', 'inline-block');
+                $('.reserve__message').html('');
 
-        let out='';
+                response = JSON.parse(ajaxResponse);
 
-        if(response['time-list'].length > 0){
-
-            $('#begin-time').html(response['time-list'][0]['time-start']);
-            $('#end-time').html(response['time-list'][0]['time-end']);
-            $('#men-quantity').html(response['time-list'][0]['free-places']);
-            currentReserveStart = currentReserveEnd = 0;
-            currentMaxPlaces = currentPlaces = parseInt(response['time-list'][0]['free-places']);
-
-            for(let i = 0; i < response['time-list'].length; i++) {
-                out+='<div id="reserve-id-' + i + '" class="col-6 reserve__list-item';
-                if(response['time-list'][i]['free-places'] < 1){
-                    out+=' busy ';
+                if (response['FreeHelmets'].length > 0) {
+                    
+                    response['time-list'] = Array();
+                    for (let i = 0; i < response['FreeHelmets'].length; i++) {
+                        response['time-list'][i] = {
+                            'time-start': response['FreeHelmets'][i]['StartHour'] + ':00',
+                            'time-end': parseInt(response['FreeHelmets'][i]['StartHour']) + 1 + ':00',
+                            'free-places': response['FreeHelmets'][i]['FreeHelmets']
+                        };
+                    }
                 }
-                out+='"><span class="reserve__time">' + response['time-list'][i]['time-start'] +
-                    '</span><span class="reserve__places"> - свободных мест: ' + response['time-list'][i]['free-places'] + '</span></div>';
-            }
-        } else {
-          out+='Извините, на этот день все места заняты';
-        }
 
-        $('#time-list').html(out);
+                let out = '';
+
+                if (response['time-list'].length > 0) {
+
+                    $('#begin-time').html(response['time-list'][0]['time-start']);
+                    $('#end-time').html(response['time-list'][0]['time-end']);
+                    $('#men-quantity').html(response['time-list'][0]['free-places']);
+                    currentReserveStart = currentReserveEnd = 0;
+                    currentMaxPlaces = currentPlaces = parseInt(response['time-list'][0]['free-places']);
+
+                    for (let i = 0; i < response['time-list'].length; i++) {
+                        out += '<div id="reserve-id-' + i + '" class="col-4 reserve__list-item';
+                        if (response['time-list'][i]['free-places'] < 1) {
+                            out += ' busy ';
+                        }
+                        out += '"><span class="reserve__time">' + response['time-list'][i]['time-start'] +
+                            '</span><span class="reserve__places"> - мест: ' + response['time-list'][i]['free-places'] + '</span></div>';
+                    }
+                } else {
+                    out += 'Извините, на этот день все места заняты';
+                }
+
+                $('#time-list').html(out);
+                $('.calendar__wrapper').toggleClass('hide');
+                $('.reserve__wrapper').toggleClass('hide');
+            }
+
+        });
+
     }
 
     // Click to arrow left
@@ -190,7 +201,7 @@ jQuery(document).ready(function ($) {
         generateCalendar(globalCurrentDate);
     });
 
-    // Click to reserve
+    // Click to day on calendar
     $(document).on('click', '.cell', function (e) {
         e.preventDefault();
         let day = new Date(globalCurrentDate.getFullYear(), globalCurrentDate.getMonth(), $(this).find('.calendar__day').text(), 12, 0, 0, 0);
@@ -361,7 +372,7 @@ jQuery(document).ready(function ($) {
             'places': currentPlaces,
             'name': name,
             'phone': tel,
-            'date': reserveDate //unix format
+            'date': reserveDate
         };
     }
 
@@ -392,6 +403,15 @@ jQuery(document).ready(function ($) {
 
     });
 
+    // Click to reserve
+    $(document).on('click', '#back-button', function (e) {
+        e.preventDefault();
+
+        $('.calendar__wrapper').toggleClass('hide');
+        $('.reserve__wrapper').toggleClass('hide');
+
+    });
+
     // Submit reserve
     $(document).on('click', '#reserve-button', function (e) {
         e.preventDefault();
@@ -411,17 +431,23 @@ jQuery(document).ready(function ($) {
 
         let data = buildRequest($('#name').val(), $('#tel').val());
 
-        //TODO send request with data here. Hardcode response now
-        console.log(data);
-
-        let response = true;
-        if(response) {
-            $(this).css('display', 'none');
-            $('.reserve__message').html('<span class="alert-success">Забронировано</span>');
-
-        } else {
-            $('.reserve__message').html('<span class="alert-danger">Ошибка связи. Попробуйте еще раз</span>');
-        }
+        $.ajax({
+            type: "GET",
+            url: "/api/MakeReservation",
+            data: data,
+            success: function (ajaxResponse) {
+                if (ajaxResponse == true) {
+                    $('#reserve-button').css('display', 'none');
+                    $('.reserve__message').html('<span class="alert-success">Забронировано</span>');
+                } else {
+                    $('.reserve__message').html('<span class="alert-danger">' + ajaxResponse + '</span>');
+                }
+                
+            },
+            error: function () {
+                $('.reserve__message').html('<span class="alert-danger">Ошибка связи. Попробуйте еще раз</span>');
+            }
+        });
 
     });
 
