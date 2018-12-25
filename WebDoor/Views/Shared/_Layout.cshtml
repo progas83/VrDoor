@@ -4,25 +4,80 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    <link href="~/Content/slick.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Font Awesome -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,600,300,300italic,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Material Design Bootstrap -->
+    <link href="~/Content/materialize.css" rel="stylesheet">
+
+    <!-- Magnific-popup css -->
+    <link href="~/Content/magnific-popup.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="~/Content/progressbar.css" rel="stylesheet"> -->
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="~/Content/mdb.min.css" rel="stylesheet"> -->
+    <!-- Your custom styles (optional) -->
+    <link href="~/Content/style.css" rel="stylesheet">
+    <link href="~/Content/responsive.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
 
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar-desktop">
 
     @RenderBody()
 
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js" language="JavaScript"></script>
     <!--<script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>-->
-    <script src="~/Scripts/fullpage.min.js"></script>
-    <script src="~/Scripts/slick.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="~/Scripts/tether.min.js"></script>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="~/Scripts/mdb.min.js"></script>
+
+    <!-- Wow js -->
+    <script type="text/javascript" src="~/Scripts/wow.min.js"></script>
+
+    <!-- Mixitup js -->
+    <script type="text/javascript" src="~/Scripts/jquery.mixitup.min.js"></script>
+
+    <!-- Magnific-popup js -->
+    <script type="text/javascript" src="~/Scripts/jquery.magnific-popup.js"></script>
+
+    <!-- accordion js -->
+    <script type="text/javascript" src="~/Scripts/accordion.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="~/Scripts/materialize.js"></script>
+
+    <script>
+        $(".button-collapse").sideNav();
+    </script>
+
+    <!-- wow js active -->
+    <script type="text/javascript">
+              //  new WOW().init();
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/plugins.js"></script>
+    <script type="text/javascript" src="~/Scripts/main.js"></script>
+
+
     <script src="~/Scripts/tobook.js"></script>
     <script src="~/Scripts/custom.js"></script>
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>
 
