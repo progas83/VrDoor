@@ -194,7 +194,7 @@ jQuery(document).ready(function ($) {
                         if (response['time-list'][i]['free-places'] < 1) {
                             out += ' busy ';
                         }
-                        out += '"><input type="checkbox" id="reserve-cb-' + i + '" name="reserve-cb-' + i + '" value="' + i + '">' +
+                        out += '"><input type="checkbox" id="reserve-cb-' + i + '" name="reserve-cb" value="' + i + '">' +
                             '<label for="reserve-cb-' + i + '"><span class="reserve__time">' + response['time-list'][i]['time-start'] + '-' + response['time-list'][i]['time-end'] +
                             '</span><span class="reserve__places"> - мест: ' + response['time-list'][i]['free-places'] + '</span></label ></div>';
                     }
@@ -207,22 +207,6 @@ jQuery(document).ready(function ($) {
 
         });
 
-    }
-
-    /**
-     * Build request to backend
-     * @param {any} name
-     * @param {any} tel
-     */
-    function buildRequest(name, tel) {
-        return {
-            'time-start': response['time-list'][currentReserveStart]['time-start'],
-            'time-end': response['time-list'][currentReserveEnd]['time-end'],
-            'places': currentPlaces,
-            'name': name,
-            'phone': tel,
-            'date': reserveDate
-        };
     }
 
     /* ======================================================= */
@@ -264,14 +248,12 @@ jQuery(document).ready(function ($) {
       
         let list = $('.reserve__list-item input:checked');
 
-        console.log(list);
 
         currentReserveTime = [];
         let minHelmets;
-        console.log(list.length);
+        
         for (let i = 0; i < list.length; i++) {
-            console.log($(list[i]).val());
-            
+           
             currentReserveTime[i] = {
                 'time-start' : response['time-list'][parseInt($(list[i]).val())]['time-start'],
                 'time-end' : response['time-list'][parseInt($(list[i]).val())]['time-end'],
@@ -298,35 +280,59 @@ jQuery(document).ready(function ($) {
 
         $('.reserve__buttons-wrapper').html(out);
 
-        console.log(currentReserveTime);
-
-        console.log('min' + minHelmets);
-
-        if(this.checked) {
-            console.log('check');
-        } else {
-            console.log('uncheck');
-        }
+       
     });
 
     // Submit reserve
     $(document).on('click', '#reserve-button', function (e) {
-        
-        if(currentPlaces < 1) {
-            $('.reserve__message').html('<span class="alert-danger">Количество мест должно быть больше 0</span>');
+
+        let time = ($("input[name='reserve-cb']:checked"));
+
+        if (typeof time == 'undefined' || time.length < 1) {
+            $('.reserve__message').html('<span class="alert-danger">Выберите время бронирования</span>');
             e.preventDefault();
+            return false;
         }
-        if($('#name').val().length < 3) {
+
+        let currentPlaces = $("input[name='helmets']:checked").val();
+
+        if (currentPlaces < 1 || currentPlaces > 4) {
+            $('.reserve__message').html('<span class="alert-danger">Выберите количество шлемов</span>');
+            e.preventDefault();
+            return false;
+        }
+        /*if($('#name').val().length < 3) {
             $('.reserve__message').html('<span class="alert-danger">Заполните поле имя</span>');
             e.preventDefault();
-        }
+            return false;
+        }*/
         if($('#tel').val().length !== 17) {
             $('.reserve__message').html('<span class="alert-danger">Заполните поле телефон</span>');
             e.preventDefault();
+            return false;
         }
 
-        let data = JSON.stringify(buildRequest($('#name').val(), $('#tel').val()));
+        let timeArray = [];
         
+        
+        for (let i = 0; i < time.length; i++) {
+            timeArray[i] = {
+                'time-start': response['time-list'][parseInt($(time[i]).val())]['time-start'],
+                'time-end': response['time-list'][parseInt($(time[i]).val())]['time-end']
+            }
+        }
+
+        let data = JSON.stringify( 
+            {
+            'time': timeArray,
+            'places': currentPlaces,
+            'name': $('#name').val(),
+            'phone': $('#tel').val(),
+            'date': reserveDate
+            }
+        );
+
+       
         $.ajax({
             type: "POST",
             url: "/api/MakeReservation",

@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\background.jpg" />
     <Content Include="Content\bg\bg1.jpg" />
     <Content Include="Content\bg\bg2.jpg" />
@@ -252,6 +253,9 @@
     <Content Include="Content\img\team2.jpg" />
     <Content Include="Content\img\team3.jpg" />
     <Content Include="Content\img\team4.jpg" />
+    <Content Include="Content\img\tg-vb-red.png" />
+    <Content Include="Content\img\tg-vb.png" />
+    <Content Include="Content\img\vr-head-red.png" />
     <Content Include="Content\img\works1.png" />
     <Content Include="Content\img\works2.png" />
     <Content Include="Content\img\works3.png" />
