@@ -354,7 +354,7 @@ jQuery(document).ready(function ($) {
     });
 
     //set mask for phone number
-    $("#tel").mask("+38(050)000-00-00");
+    $("#tel").mask("+38(000)000-00-00");
 
     //init calendar
     generateCalendar();
