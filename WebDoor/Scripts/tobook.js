@@ -332,11 +332,30 @@ jQuery(document).ready(function ($) {
             }
         );
 
+        //let data22 = JSON.stringify(
+        //    {
+        //        'time': timeArray,
+        //        'places': currentPlaces,
+        //        'name': $('#name').val(),
+        //        'phone': $('#tel').val(),
+        //        'date': reserveDate
+        //    }
+        //);
+
+
+        //let testData = {
+        //    'time': timeArray,
+        //    'places': currentPlaces,
+        //    'name': $('#name').val(),
+        //    'phone': $('#tel').val(),
+        //    'date': reserveDate
+        //}
+
        
         $.ajax({
             type: "POST",
             url: "/api/MakeReservation",
-            data: data,
+            data: { '': data },
             success: function (ajaxResponse) {
                 if (ajaxResponse == true) {
                     $('#reserve-button').css('display', 'none');

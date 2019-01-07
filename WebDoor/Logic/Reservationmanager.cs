@@ -206,5 +206,58 @@ namespace WebDoor.Logic
             }
             return freeHelmets;
         }
+
+
+        public string ReserveHelmets(ReservationInfo reservationInfo)
+        {
+            string result = Boolean.FalseString;
+            using (var db = new DoorDbContext())
+            {
+                var visitor = db.Visitors.SingleOrDefault(v => v.UniqueTelephoneNumber == reservationInfo.Phone);
+                if(visitor== null)
+                {
+                   visitor = this.RegisterNewVisitor(db, reservationInfo.Name, reservationInfo.Phone);
+                }
+
+                Reservation reservation = new Reservation();
+                foreach(var reservationHour in reservationInfo.Time)
+                {
+                    HourReservation hr = new HourReservation();
+                    for(int helmet = 0;helmet<reservationInfo.Places;helmet++)
+                    {
+                        hr.HelmetWorkStations.Add(db.HelmetWorkStations.First());
+                    }
+                    hr.VisitorId = visitor.Id;//.HelmetWorkStations
+                    hr.StartReservation = TimeSpan.Parse(reservationHour.TimeStart);
+                    hr.EndReservation = TimeSpan.Parse(reservationHour.TimeEnd);
+
+                    reservation.HourReservations.Add(hr);
+                    
+                }
+                reservation.DateReservation = new DateTime(reservationInfo.Date.Year, reservationInfo.Date.Month, reservationInfo.Date.Day);
+                
+                db.Reservations.Add(reservation);
+                db.SaveChanges();
+            }
+                return result;
+        }
+
+        private Visitor RegisterNewVisitor(DoorDbContext db, string name, string phone)
+        {
+            var existedVisitor = db.Visitors.SingleOrDefault(v => v.UniqueTelephoneNumber == phone);
+            if(existedVisitor==null)
+            {
+                Visitor visitor = new Visitor();
+                visitor.Name = name;
+                visitor.UniqueTelephoneNumber = phone;
+                // There is no any discount parameters, but it needs to develop
+                visitor.DiscountParameterId = 10;//
+               existedVisitor = db.Visitors.Add(visitor);
+
+                db.SaveChanges();
+            }
+
+            return existedVisitor;
+        }
     }
 }
